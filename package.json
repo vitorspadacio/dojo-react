@@ -1,0 +1,27 @@
+{
+  "name": "dojo-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsp193/dojo-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vsp193/dojo-react/issues"
+  },
+  "homepage": "https://github.com/vsp193/dojo-react#readme",
+  "devDependencies": {
+    "parcel": "^1.12.3"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}

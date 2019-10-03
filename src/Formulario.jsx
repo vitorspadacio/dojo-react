@@ -1,40 +1,31 @@
 import React, { useState } from 'react';
 
-// Categoria (ver melhor)
-// CodigoBarras
-// Descrição
-// Nome
-// Preço
+import InputTexto from '../InputTexto';
+import ListaCategoria from './ListaCategoria';
+import Preco from './Preco';
 
-export default function Formulario() {
-  // const [nome, setNome] = React.useState('produto');
-  // const [descricao, setDescricao] = React.useState();
-  // const [categoria, setCategoria] = React.useState();
-  // const [preco, setPreco] = React.useState();
+import './style.scss';
 
-  const produtoInicial = {
-    nome: '',
-    descricao: '',
-    categoria: '',
-    preco: '',
-    codigoBarras: 0,
-  };
+const produtoInicial = {
+  nome: '',
+  descricao: '',
+  categoria: '',
+  preco: '',
+  codigoBarras: 0,
+};
 
+const categorias = [
+  { id: 1, nome: 'Alimentício' },
+  { id: 2, nome: 'Higiene' },
+  { id: 3, nome: 'Mesa e banho' },
+];
+
+export default () => {
   const [produto, setProduto] = useState(produtoInicial);
-  const [produtos, setProdutos] = useState([
-    {
-      nome: 'A',
-      descricao: 'A',
-      categoria: 'A',
-      preco: 'A',
-      codigoBarras: 0,
-    }
-  ]);
+  const [produtos, setProdutos] = useState([]);
 
-  const handleInputChange = function(event){
+  const handleInputChange = (event) => {
     const {target: {name, value} } = event;
-    console.log(event.target.value)
-
     setProduto({...produto, [name]: value});
   };
 
@@ -43,26 +34,21 @@ export default function Formulario() {
     setProduto(produtoInicial);
   };
 
-  return (
-    <div>
-      <h1>Formulário</h1>
-      <label>Nome:
-        <input type="text" name="nome" value={produto.nome} onChange={handleInputChange}></input>
-      </label>
-      <label>Descrição:
-        <input type="text" name="descricao" value={produto.descricao} onChange={handleInputChange}></input>
-      </label>
-      <label>Categoria:
-        <input type="text" name="categoria" value={produto.categoria} onChange={handleInputChange}></input>
-      </label>
-      <label>Preço:
-        <input type="text" name="preco" value={produto.preco} onChange={handleInputChange}></input>
-      </label>
-      <label>Codigo de Barras:
-        <img src="http://lorempixel.com/50/50/" ></img>
-      </label>
+  const handlePrecoChange = (value) => {
+    setProduto({...produto, preco: value});
+  };
 
-      <button onClick={handleEnviarClick}>Enviar</button>
+
+  return (
+    <div id='formulario'>
+      <h1>Formulário</h1>
+      
+      <InputTexto name="nome" value={produto.nome} onChange={handleInputChange} />
+      <InputTexto name="descricao" value={produto.descricao} onChange={handleInputChange} />
+
+      <ListaCategoria categorias={categorias} />
+      
+      <Preco preco={produto.preco} onChange={handlePrecoChange}/>
 
       <ul>
         {produtos.map(function(produto, i) {
